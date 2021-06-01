@@ -1,0 +1,29 @@
+From 4732d616c5e25d009440fad28e9a8670f9e272f8 Mon Sep 17 00:00:00 2001
+From: Jasper Orschulko <Jasper.Orschulko@iris-sensing.com>
+Date: Fri, 4 Jun 2021 14:15:02 +0200
+Subject: [PATCH] Set Makefiles LIB_VERSION to 1.1
+
+LIB_VERSION in Makefile is now correctly set to match the release,
+resulting in correctly versioned dynamic library
+
+Upstream-Status: Inappropriate
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 6f5c2ec..888912c 100644
+--- a/Makefile
++++ b/Makefile
+@@ -18,7 +18,7 @@ PREFIX ?= /usr/local
+ SDL_CFLAGS != pkg-config --cflags sdl
+ SDL_LIBS != pkg-config --libs sdl
+ 
+-LIB_VERSION = 1.0
++LIB_VERSION = 1.1
+ 
+ CFLAGS ?= -O3 -Wall -fPIC
+ QUIRC_CFLAGS = -Ilib $(CFLAGS) $(SDL_CFLAGS)
+-- 
+2.31.1
+
