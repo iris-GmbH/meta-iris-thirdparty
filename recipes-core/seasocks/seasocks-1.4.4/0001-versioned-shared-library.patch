@@ -1,0 +1,45 @@
+From 703884d4fa8206b055406d2486b6aa515194a77e Mon Sep 17 00:00:00 2001
+From: Jasper Orschulko <Jasper.Orschulko@iris-sensing.com>
+Date: Tue, 18 May 2021 16:58:53 +0200
+Subject: [PATCH] versioned shared library
+
+this commit adds versioning to libseasocks.so
+
+before:
+/usr/local/lib/
+|-- libseasocks.so
+
+after:
+/usr/local/lib/
+|-- libseasocks.so -> libseasocks.so.1.4.4
+|-- libseasocks.so.1.4.4
+
+Co-authored-by: offa <bm-dev@yandex.com>
+Co-authored-by: Anonymous Maarten <madebr@users.noreply.github.com>
+
+Upstream-Status: Merged [https://github.com/mattgodbolt/seasocks/pull/153]
+---
+ src/main/c/CMakeLists.txt | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/src/main/c/CMakeLists.txt b/src/main/c/CMakeLists.txt
+index 618a473..13f33e8 100644
+--- a/src/main/c/CMakeLists.txt
++++ b/src/main/c/CMakeLists.txt
+@@ -67,6 +67,13 @@ add_library(seasocks ${SEASOCKS_LIBTYPE}
+         util/RootPageHandler.cpp
+         $<TARGET_OBJECTS:embedded>
+         )
++
++set_target_properties(
++    seasocks
++    PROPERTIES
++        VERSION ${Seasocks_VERSION}
++)
++
+ if (DEFLATE_SUPPORT)
+     target_sources(seasocks PRIVATE seasocks/ZlibContext.cpp)
+ else ()
+-- 
+2.31.1
+
