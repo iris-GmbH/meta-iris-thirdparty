@@ -30,7 +30,7 @@ Run 'bitbake-layers add-layer meta-iris-thirdparty'
 III. Misc
 ========
 
-This repository contains recipes for various software contained in our IRIS IRMA SIX product.
+This repository contains recipes for various software used within our IRIS IRMA SIX product.
 We try to keep the recipes as generic as possible in order to cover common use-cases.
 Feel free to integrate this layer into your own Yocto builds. Contributions are welcome!
 
