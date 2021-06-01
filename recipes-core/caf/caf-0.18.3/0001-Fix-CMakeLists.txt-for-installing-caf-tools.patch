@@ -1,0 +1,30 @@
+From aa9ba3fb0b3017df9f19a525d9b71cf31ac36226 Mon Sep 17 00:00:00 2001
+From: Jasper Orschulko <Jasper.Orschulko@iris-sensing.com>
+Date: Tue, 1 Jun 2021 17:15:36 +0200
+Subject: [PATCH] Fix CMakeLists.txt for installing caf-tools
+
+This change fixes the outcome of `make install`, which previously would
+install the tools' .cpp files to `/usr/local/share/caf/tools`. Now, we
+install the built tool binaries instead.
+
+Upstream-Status: Merged: https://github.com/actor-framework/actor-framework/pull/1267
+---
+ tools/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tools/CMakeLists.txt b/tools/CMakeLists.txt
+index 4b44006c5..5e972cbae 100644
+--- a/tools/CMakeLists.txt
++++ b/tools/CMakeLists.txt
+@@ -2,7 +2,7 @@ add_custom_target(all_tools)
+ 
+ macro(add name)
+   add_executable(${name} ${name}.cpp ${ARGN})
+-  install(FILES ${name}.cpp DESTINATION ${CMAKE_INSTALL_DATADIR}/caf/tools)
++  install(TARGETS ${name} DESTINATION ${CMAKE_INSTALL_DATADIR}/caf/tools)
+   add_dependencies(${name} all_tools)
+ endmacro()
+ 
+-- 
+2.31.1
+
