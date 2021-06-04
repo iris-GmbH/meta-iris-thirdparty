@@ -18,16 +18,16 @@ Maintainers:
 Table of Contents
 =================
 
-   I. Adding the meta-iris-thirdparty layer to your build
-  II. Misc
+1. Adding the meta-iris-thirdparty layer to your build
+2. Misc
 
 
-I. Adding the meta-iris-base layer to your build
+Adding the meta-iris-base layer to your build
 =================================================
 
 Run 'bitbake-layers add-layer meta-iris-thirdparty'
 
-III. Misc
+Misc
 ========
 
 This repository contains recipes for various software used within our IRIS IRMA SIX product.
