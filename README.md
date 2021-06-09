@@ -5,6 +5,7 @@ Please see the corresponding sections below for details.
 Dependencies
 ============
  - openembedded-core
+ - meta-oe
 
 Patches
 =======
