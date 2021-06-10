@@ -5,8 +5,9 @@ DESCRIPTION = "A tiny embeddable C++ HTTP and WebSocket server for Linux"
 HOMEPAGE = "https://github.com/mattgodbolt/seasocks"
 SECTION = "libs"
 
-LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=21362fe40271b97d3ce68f544471f159"
+LICENSE = "BSD-2-Clause & FPL"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=21362fe40271b97d3ce68f544471f159 \
+                    file://src/main/c/sha1/license.txt;md5=5d75a650edc73a9ad20eb54329540b17"
 
 SRC_URI = "git://github.com/mattgodbolt/seasocks.git;protocol=https"
 SRCREV = "7fd17dd1b33c76d622c9dd0eae2579d29bff8056"
