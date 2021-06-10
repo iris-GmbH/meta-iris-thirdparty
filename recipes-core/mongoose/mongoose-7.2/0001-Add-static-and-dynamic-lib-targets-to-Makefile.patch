@@ -3,6 +3,7 @@ From: Jasper Orschulko <Jasper.Orschulko@iris-sensing.com>
 Date: Wed, 2 Jun 2021 02:09:55 +0200
 Subject: [PATCH] Add static and dynamic lib targets to Makefile
 
+Upstream-Status: Submitted [https://github.com/cesanta/mongoose/pull/1295]
 ---
  Makefile | 41 ++++++++++++++++++++++++++++++++++++++++-
  1 file changed, 39 insertions(+), 0 deletion(-)
