@@ -17,7 +17,7 @@ after:
 Co-authored-by: offa <bm-dev@yandex.com>
 Co-authored-by: Anonymous Maarten <madebr@users.noreply.github.com>
 
-Upstream-Status: Merged [https://github.com/mattgodbolt/seasocks/pull/153]
+Upstream-Status: Accepted [https://github.com/mattgodbolt/seasocks/pull/153]
 ---
  src/main/c/CMakeLists.txt | 7 +++++++
  1 file changed, 7 insertions(+)

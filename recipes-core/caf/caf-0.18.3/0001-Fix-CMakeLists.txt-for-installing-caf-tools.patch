@@ -7,7 +7,7 @@ This change fixes the outcome of `make install`, which previously would
 install the tools' .cpp files to `/usr/local/share/caf/tools`. Now, we
 install the built tool binaries instead.
 
-Upstream-Status: Merged: https://github.com/actor-framework/actor-framework/pull/1267
+Upstream-Status: Accepted [https://github.com/actor-framework/actor-framework/pull/1267]
 ---
  tools/CMakeLists.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
