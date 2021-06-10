@@ -1,15 +1,15 @@
-From 411d2019a1d333396f6d33b667390947b045aeae Mon Sep 17 00:00:00 2001
+From 4903fb0e6c88c6ec8ac3459a31fdf05ebcaeed0c Mon Sep 17 00:00:00 2001
 From: Jasper Orschulko <Jasper.Orschulko@iris-sensing.com>
 Date: Wed, 2 Jun 2021 02:09:55 +0200
 Subject: [PATCH] Add static and dynamic lib targets to Makefile
 
 Upstream-Status: Submitted [https://github.com/cesanta/mongoose/pull/1295]
 ---
- Makefile | 41 ++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 39 insertions(+), 0 deletion(-)
+ Makefile | 39 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
 diff --git a/Makefile b/Makefile
-index a5c25cad..97bb441a 100644
+index a5c25cad..07afccde 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -14,6 +14,16 @@ IPV6 ?= 1
@@ -33,12 +33,12 @@ index a5c25cad..97bb441a 100644
  linux++: CC = g++ -Wno-missing-field-initializers
  linux++: linux
  
-+linux-libs: $(LIBNAME).so.$(SO_MAJOR).$(SO_MINOR) $(LIBNAME).a
++linux-libs: $(SHARED_LIB) $(STATIC_LIB)
 +
 +$(SHARED_LIB): $(LIB_OBJ)
 +	$(CC) $(LIB_OBJ) $(LDFLAGS) -shared -o $(SHARED_LIB)
 +
-+$(STATIC_LIB):
++$(STATIC_LIB): $(LIB_OBJ)
 +	$(AR) rcs $(STATIC_LIB) $(LIB_OBJ)
 +
 +install: linux-libs
@@ -66,5 +66,5 @@ index a5c25cad..97bb441a 100644
  	(cat src/license.h; echo; echo '#include "mongoose.h"' ; (for F in src/private.h src/*.c ; do echo; echo '#ifdef MG_ENABLE_LINES'; echo "#line 1 \"$$F\""; echo '#endif'; cat $$F | sed -e 's,#include ".*,,'; done))> $@
  
 -- 
-2.31.1
+2.32.0
 
