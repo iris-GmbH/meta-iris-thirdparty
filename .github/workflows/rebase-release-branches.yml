@@ -10,7 +10,6 @@ on:
 
 jobs:
   rebase-release-branches:
-    if: github.event.comment.author_association == 'MEMBER'
     runs-on: ubuntu-latest
     
     steps:
