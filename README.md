@@ -23,8 +23,8 @@ Table of Contents
 2. Misc
 
 
-Adding the meta-iris-base layer to your build
-=================================================
+Adding the meta-iris-thirdparty layer to your build
+===================================================
 
 Run 'bitbake-layers add-layer meta-iris-thirdparty'
 
@@ -36,5 +36,5 @@ We try to keep the recipes as generic as possible in order to cover common use-c
 Feel free to integrate this layer into your own Yocto builds. Contributions are welcome!
 
 The Maintainers of this layer focus on supporting the current Yocto LTS release.
-However, feel free to add support for other layers via pull requests.
+However, feel free to add support for releases layers via pull requests.
 In the future we plan to include all currently supported Yocto releases in a CI workflow.
