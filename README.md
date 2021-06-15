@@ -36,5 +36,5 @@ We try to keep the recipes as generic as possible in order to cover common use-c
 Feel free to integrate this layer into your own Yocto builds. Contributions are welcome!
 
 The Maintainers of this layer focus on supporting the current Yocto LTS release.
-However, feel free to add support for releases layers via pull requests.
+However, feel free to add support for other releases via pull requests.
 In the future we plan to include all currently supported Yocto releases in a CI workflow.
