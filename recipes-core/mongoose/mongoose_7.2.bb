@@ -16,19 +16,21 @@ SECTION = "libs"
 SRC_URI = "git://github.com/cesanta/mongoose.git"
 SRCREV = "452bcc68a4c5fecce2ca6ad5c9b60beca9b0214f"
 
-SRC_URI += "file://0001-Add-static-and-dynamic-lib-targets-to-Makefile.patch"
+SRC_URI += "file://0001-Makefile-add-static-and-dynamic-lib-targets.patch"
 
 S = "${WORKDIR}/git"
 
 DEPENDS += "openssl"
 
 CFLAGS_prepend = "-Wno-format-truncation -fPIC "
-EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'CFLAGS=${CFLAGS}' 'BUILDDIR=${S}' 'SSL=OPENSSL' 'PREFIX=' 'DESTDIR=${D}' 'DOCDIR=${docdir}' 'INCLUDEDIR=${includedir}' 'LIBDIR=${libdir}'"
+EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'CFLAGS=${CFLAGS}' 'SSL=OPENSSL' 'DESTDIR=${D}' 'PREFIX=/usr'"
 
 do_compile(){
     oe_runmake linux-libs
 }
 
 do_install(){
+    mkdir -p ${D}${libdir}
+    mkdir -p ${D}${includedir}
     oe_runmake install
 }

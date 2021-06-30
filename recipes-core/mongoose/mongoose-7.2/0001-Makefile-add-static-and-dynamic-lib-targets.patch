@@ -1,0 +1,45 @@
+From dd8e0c31551c45db79db294b0b3593819cc858a3 Mon Sep 17 00:00:00 2001
+From: Jasper Orschulko <Jasper.Orschulko@iris-sensing.com>
+Date: Wed, 2 Jun 2021 02:09:55 +0200
+Subject: [PATCH] Makefile: add static and dynamic lib targets
+
+---
+ Makefile | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index a5c25cad..894b5cc2 100644
+--- a/Makefile
++++ b/Makefile
+@@ -14,6 +14,8 @@ IPV6 ?= 1
+ ASAN_OPTIONS ?=
+ EXAMPLES := $(wildcard examples/*)
+ EXAMPLE_TARGET ?= example
++PREFIX ?= /usr/local
++SOVERSION = 7.2
+ .PHONY: ex test
+ 
+ ifeq "$(SSL)" "MBEDTLS"
+@@ -95,6 +97,19 @@ linux: Makefile mongoose.c mongoose.h test/unit_test.c
+ linux++: CC = g++ -Wno-missing-field-initializers
+ linux++: linux
+ 
++linux-libs: CFLAGS += -fPIC
++linux-libs: mongoose.o
++	$(CC) mongoose.o $(LDFLAGS) -shared -o libmongoose.so.$(SOVERSION)
++	$(AR) rcs libmongoose.a mongoose.o
++
++install: linux-libs
++	install -Dm644 libmongoose.a libmongoose.so.$(SOVERSION) $(DESTDIR)${PREFIX}/lib
++	ln -s libmongoose.so.$(SOVERSION) $(DESTDIR)${PREFIX}/lib/libmongoose.so 
++	install -Dm644 mongoose.h $(DESTDIR)${PREFIX}/include/mongoose.h
++
++uninstall:
++	rm -rf $(DESTDIR)${PREFIX}/lib/libmongoose.a $(DESTDIR)${PREFIX}/lib/libmongoose.so.$(SOVERSION) $(DESTDIR)${PREFIX}/include/mongoose.h $(DESTDIR)${PREFIX}/lib/libmongoose.so
++
+ mongoose.c: $(SRCS) Makefile
+ 	(cat src/license.h; echo; echo '#include "mongoose.h"' ; (for F in src/private.h src/*.c ; do echo; echo '#ifdef MG_ENABLE_LINES'; echo "#line 1 \"$$F\""; echo '#endif'; cat $$F | sed -e 's,#include ".*,,'; done))> $@
+ 
+-- 
+2.32.0
+
