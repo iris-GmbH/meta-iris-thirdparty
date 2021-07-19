@@ -3,6 +3,4 @@
 
 require recipes-core/caf/caf.inc
 
-SRCREV = "d25d4f998c4be627f39bb98f99dcfb3b88b9f877"
-
-DEFAULT_PREFERENCE = "-1"
+SRCREV = "c2be26e7f9e3e84ef14730590fc4e7b25fb9d29a"
