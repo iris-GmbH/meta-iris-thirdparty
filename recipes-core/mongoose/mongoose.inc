@@ -9,7 +9,6 @@ HOMEPAGE = "https://www.cesanta.com/"
 
 LICENSE = "GPLv2 | mongoose"
 LICENSE_FLAGS = "commercial"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=530df01565982e978c1e24a2ee516eeb"
 
 SECTION = "libs"
 
