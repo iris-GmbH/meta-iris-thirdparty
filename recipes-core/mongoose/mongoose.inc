@@ -30,3 +30,5 @@ do_install(){
     mkdir -p ${D}${includedir}
     oe_runmake install
 }
+
+BBCLASSEXTEND =+ "native nativesdk"

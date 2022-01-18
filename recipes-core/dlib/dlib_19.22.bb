@@ -19,3 +19,5 @@ EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=RELEASE"
 
 # build as shared library
 EXTRA_OECMAKE += "-DBUILD_SHARED_LIBS=TRUE"
+
+BBCLASSEXTEND =+ "native nativesdk"

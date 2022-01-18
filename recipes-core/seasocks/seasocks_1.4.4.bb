@@ -35,3 +35,5 @@ do_install_append() {
     rmdir ${D}${datadir}/licenses 2>/dev/null || true
     rmdir ${D}${datadir} 2>/dev/null || true
 }
+
+BBCLASSEXTEND =+ "native nativesdk"
