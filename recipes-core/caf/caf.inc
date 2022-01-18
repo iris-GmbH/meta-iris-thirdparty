@@ -30,3 +30,5 @@ EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=RELEASE \
                   -DCAF_ENABLE_EXAMPLES=OFF \
                   -DCAF_ENABLE_TESTING=OFF \
                   -DCMAKE_CXX_STANDARD=17"
+
+BBCLASSEXTEND =+ "native nativesdk"
