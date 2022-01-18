@@ -16,11 +16,11 @@ DEPENDS = "curl openssl"
 
 PACKAGES =+ "${PN}-openssl ${PN}-io ${PN}-tools"
 
-FILES_${PN}-openssl += "${libdir}/libcaf_openssl.so.${PV}" 
-FILES_${PN}-io += "${libdir}/libcaf_io.so.${PV}" 
-FILES_${PN}-tools += "${datadir}/caf/tools/*" 
+FILES:${PN}-openssl += "${libdir}/libcaf_openssl.so.${PV}" 
+FILES:${PN}-io += "${libdir}/libcaf_io.so.${PV}" 
+FILES:${PN}-tools += "${datadir}/caf/tools/*" 
 
-RDEPENDS_${PN}-openssl = "openssl"
+RDEPENDS:${PN}-openssl = "openssl"
 
 S = "${WORKDIR}/git"
 

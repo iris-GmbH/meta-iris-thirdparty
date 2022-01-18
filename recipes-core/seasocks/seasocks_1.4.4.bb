@@ -30,8 +30,8 @@ EXTRA_OECMAKE += "-DSEASOCKS_SHARED=TRUE"
 
 # remove license from base-package installation process.
 # yocto has it's own workflow for license inclusion
-do_install_append() {
-    rm -r  ${D}${datadir}/licenses/Seasocks
+do_install:append() {
+    rm -r ${D}${datadir}/licenses/Seasocks
     rmdir ${D}${datadir}/licenses 2>/dev/null || true
     rmdir ${D}${datadir} 2>/dev/null || true
 }

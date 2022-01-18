@@ -20,12 +20,12 @@ S = "${WORKDIR}/git"
 DEPENDS = "libsdl libsdl-gfx libjpeg-turbo libpng"
 
 PACKAGES =+ "${PN}-scanner ${PN}-demo"
-FILES_${PN}-scanner = "${bindir}/${PN}-scanner"
-FILES_${PN}-demo = "${bindir}/${PN}-demo"
+FILES:${PN}-scanner = "${bindir}/${PN}-scanner"
+FILES:${PN}-demo = "${bindir}/${PN}-demo"
 
 inherit pkgconfig
 
-CFLAGS_prepend = "-fPIC "
+CFLAGS:prepend = "-fPIC "
 EXTRA_OEMAKE = "'PREFIX=/usr/'"
 
 do_compile () {
