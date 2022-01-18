@@ -18,7 +18,7 @@ S = "${WORKDIR}/git"
 
 DEPENDS += "openssl"
 
-CFLAGS_prepend = "-Wno-format-truncation -fPIC "
+CFLAGS:prepend = "-Wno-format-truncation -fPIC "
 EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'CFLAGS=${CFLAGS}' 'SSL=OPENSSL' 'DESTDIR=${D}' 'PREFIX=/usr'"
 
 do_compile(){
