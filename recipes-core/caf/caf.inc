@@ -10,7 +10,7 @@ SECTION = "libs"
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ee8f49240c963159b27ef65f9aa6bcb1"
 
-SRC_URI = "git://github.com/actor-framework/actor-framework.git;protocol=https"
+SRC_URI = "git://github.com/actor-framework/actor-framework.git;protocol=https;branch=master"
 
 DEPENDS = "curl openssl"
 
