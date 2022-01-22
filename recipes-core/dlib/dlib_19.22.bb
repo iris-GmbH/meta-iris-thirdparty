@@ -8,7 +8,7 @@ SECTION = "libs"
 LICENSE = "BSL-1.0"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=2c7a3fa82e66676005cd4ee2608fd7d2"
 
-SRC_URI = "git://github.com/davisking/dlib.git;protocol=https"
+SRC_URI = "git://github.com/davisking/dlib.git;protocol=https;branch=master"
 SRCREV = "70ea028f12e10f4d992a0c4f0169749eae5bb185"
 
 S = "${WORKDIR}/git"
