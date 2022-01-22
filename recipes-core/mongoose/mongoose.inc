@@ -13,6 +13,7 @@ LICENSE_FLAGS = "commercial"
 SECTION = "libs"
 
 SRC_URI = "git://github.com/cesanta/mongoose.git;protocol=https;branch=master"
+SRC_URI += "file://FindMongoose.cmake"
 
 S = "${WORKDIR}/git"
 
@@ -27,6 +28,8 @@ do_install(){
     mkdir -p ${D}${libdir}
     mkdir -p ${D}${includedir}
     oe_runmake install
+   install -d ${D}${datadir}/cmake/Modules
+   install -m 644 ${WORKDIR}/FindMongoose.cmake ${D}${datadir}/cmake/Modules
 }
 
 BBCLASSEXTEND =+ "native nativesdk"
