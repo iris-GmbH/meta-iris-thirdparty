@@ -12,7 +12,7 @@ LICENSE_FLAGS = "commercial"
 
 SECTION = "libs"
 
-SRC_URI = "git://github.com/cesanta/mongoose.git"
+SRC_URI = "git://github.com/cesanta/mongoose.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
 
