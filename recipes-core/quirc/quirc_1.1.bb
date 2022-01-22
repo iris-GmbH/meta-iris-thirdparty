@@ -10,7 +10,7 @@ SECTION = "libs"
 LICENSE = "ISC"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=9089f3b6d4a4b43f012b77e2c59320ee"
 
-SRC_URI = "git://github.com/dlbeer/quirc.git;protocol=https"
+SRC_URI = "git://github.com/dlbeer/quirc.git;protocol=https;branch=master"
 SRCREV = "2e8c4ce7bc45fbe137e50e338c297e265777e7dd"
 
 SRC_URI += "file://0001-Set-Makefiles-LIB_VERSION-to-1.1.patch"
