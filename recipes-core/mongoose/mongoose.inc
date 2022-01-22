@@ -16,10 +16,8 @@ SRC_URI = "git://github.com/cesanta/mongoose.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
 
-DEPENDS += "openssl"
-
 CFLAGS:prepend = "-Wno-format-truncation -fPIC "
-EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'CFLAGS=${CFLAGS}' 'SSL=OPENSSL' 'DESTDIR=${D}' 'PREFIX=/usr'"
+EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'CFLAGS=${CFLAGS}' 'DESTDIR=${D}' 'PREFIX=/usr'"
 
 do_compile(){
     oe_runmake linux-libs
