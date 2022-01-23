@@ -1,0 +1,79 @@
+From 5c01ffa480d43332cf452ebc3addea103c77c502 Mon Sep 17 00:00:00 2001
+From: Jasper Orschulko <Jasper.Orschulko@iris-sensing.com>
+Date: Sun, 23 Jan 2022 01:36:15 +0100
+Subject: [PATCH] cmake: Add find-module for the quirc library
+
+Quirc is a Makefile based project. Add a find-module for easier
+integration into cmake based projects.
+
+Signed-off-by: Jasper Orschulko <Jasper.Orschulko@iris-sensing.com>
+---
+ Modules/FindQuirc.cmake | 56 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+ create mode 100644 Modules/FindQuirc.cmake
+
+diff --git a/Modules/FindQuirc.cmake b/Modules/FindQuirc.cmake
+new file mode 100644
+index 0000000000..651d154024
+--- /dev/null
++++ b/Modules/FindQuirc.cmake
+@@ -0,0 +1,56 @@
++# SPDX-License-Identifier: BSD-3-Clause
++# Copyright (C) 2022 iris-GmbH infrared & intelligent sensors
++# This file is based on work which is:
++# Copyright 2000-2022 Kitware, Inc. and Contributors
++
++#[=======================================================================[.rst:
++FindQuirc
++------------
++
++Finds the Quirc library.
++
++Imported Targets
++^^^^^^^^^^^^^^^^
++
++This module provides the following imported targets, if found:
++
++``Quirc::Quirc``
++
++Result Variables
++^^^^^^^^^^^^^^^^
++
++This will define the following variables:
++
++``Quirc_FOUND``
++  True if the system has the Quirc library.
++``Quirc_INCLUDE_DIRS``
++  Include directories needed to use Quirc.
++``Quirc_LIBRARIES``
++  Libraries needed to link to Quirc.
++
++#]=======================================================================]
++
++# Look for the necessary header
++find_path(Quirc_INCLUDE_DIR NAMES quirc.h)
++mark_as_advanced(Quirc_INCLUDE_DIR)
++
++# Look for the necessary library
++find_library(Quirc_LIBRARY NAMES quirc)
++mark_as_advanced(Quirc_LIBRARY)
++
++include(FindPackageHandleStandardArgs)
++find_package_handle_standard_args(Quirc
++    REQUIRED_VARS Quirc_INCLUDE_DIR Quirc_LIBRARY
++    VERSION_VAR Quirc_VERSION)
++
++# Create the imported target
++if(Quirc_FOUND)
++    set(Quirc_INCLUDE_DIRS ${Quirc_INCLUDE_DIR})
++    set(Quirc_LIBRARIES ${Quirc_LIBRARY})
++    if(NOT TARGET Quirc::Quirc)
++        add_library(Quirc::Quirc UNKNOWN IMPORTED)
++        set_target_properties(Quirc::Quirc PROPERTIES
++            IMPORTED_LOCATION               "${Quirc_LIBRARY}"
++            INTERFACE_INCLUDE_DIRECTORIES   "${Quirc_INCLUDE_DIR}")
++    endif()
++endif()
+-- 
+2.34.1
+
