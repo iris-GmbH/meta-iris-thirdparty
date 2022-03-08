@@ -14,6 +14,7 @@ SRC_URI = "git://github.com/dlbeer/quirc.git;protocol=https;branch=master"
 SRCREV = "2e8c4ce7bc45fbe137e50e338c297e265777e7dd"
 
 SRC_URI += "file://0001-Set-Makefiles-LIB_VERSION-to-1.1.patch"
+SRC_URI += "file://FindQuirc.cmake"
 
 S = "${WORKDIR}/git"
 
@@ -37,6 +38,8 @@ do_install () {
     install -d ${D}${libdir}
     install -d ${D}${bindir}
     oe_runmake install DESTDIR=${D}
+    install -d ${D}${datadir}/cmake/Modules
+    install -m 644 ${WORKDIR}/FindQuirc.cmake ${D}${datadir}/cmake/Modules
 }
 
 BBCLASSEXTEND =+ "native nativesdk"
