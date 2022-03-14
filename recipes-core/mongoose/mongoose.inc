@@ -20,6 +20,8 @@ S = "${WORKDIR}/git"
 CFLAGS_prepend = "-Wno-format-truncation -fPIC "
 EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'CFLAGS=${CFLAGS}' 'DESTDIR=${D}' 'PREFIX=/usr'"
 
+FILES_${PN} += "${libdir}/libmongoose.so"
+
 do_compile(){
     oe_runmake linux-libs
 }
