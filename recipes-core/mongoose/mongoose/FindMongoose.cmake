@@ -45,8 +45,10 @@ if(Mongoose_INCLUDE_DIR)
     file(STRINGS ${Mongoose_INCLUDE_DIR}/mongoose.h _ver_line
         REGEX "^#define MG_VERSION\\s*\"[0-9]+\\.[0-9]+\""
         LIMIT_COUNT 1)
+    message(STATUS "ver_line is: ${_ver_line}")
     string(REGEX MATCH "[0-9]+\\.[0-9]+"
             Mongoose_VERSION "${_ver_line}")
+        message(STATUS "Mongoose_VERSION is: ${Mongoose_VERSION}")
     unset(_ver_line)
 endif()
 
