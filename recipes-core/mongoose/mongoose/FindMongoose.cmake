@@ -43,7 +43,7 @@ mark_as_advanced(Mongoose_LIBRARY)
 # Extract version information from the header file
 if(Mongoose_INCLUDE_DIR)
     file(STRINGS ${Mongoose_INCLUDE_DIR}/mongoose.h _ver_line
-        REGEX "^#define MG_VERSION\\s*\"[0-9]+\\.[0-9]+\""
+        REGEX "^#define[ \\t]+MG_VERSION[ \\t]+\"[0-9]+\\.[0-9]+\""
         LIMIT_COUNT 1)
     message(STATUS "ver_line is: ${_ver_line}")
     string(REGEX MATCH "[0-9]+\\.[0-9]+"
@@ -55,7 +55,7 @@ endif()
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Mongoose
     REQUIRED_VARS Mongoose_INCLUDE_DIR Mongoose_LIBRARY
-    VERSION_VAR Mongoose_VERSION)
+    )
 
 # Create the imported target
 if(Mongoose_FOUND)
