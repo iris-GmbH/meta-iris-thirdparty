@@ -20,6 +20,10 @@ S = "${WORKDIR}/git"
 CFLAGS_prepend = "-Wno-format-truncation -fPIC "
 EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'CFLAGS=${CFLAGS}' 'DESTDIR=${D}' 'PREFIX=/usr'"
 
+FILES_SOLIBSDEV = ""
+FILES_${PN} += "${libdir}/"
+INSANE_SKIP_${PN} = "dev-so"
+
 do_compile(){
     oe_runmake linux-libs
 }
@@ -28,8 +32,8 @@ do_install(){
     mkdir -p ${D}${libdir}
     mkdir -p ${D}${includedir}
     oe_runmake install
-   install -d ${D}${datadir}/cmake/Modules
-   install -m 644 ${WORKDIR}/FindMongoose.cmake ${D}${datadir}/cmake/Modules
+    install -d ${D}${datadir}/cmake/Modules
+    install -m 644 ${WORKDIR}/FindMongoose.cmake ${D}${datadir}/cmake/Modules
 }
 
 BBCLASSEXTEND =+ "native nativesdk"
