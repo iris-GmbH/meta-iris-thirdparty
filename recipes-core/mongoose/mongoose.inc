@@ -20,6 +20,10 @@ S = "${WORKDIR}/git"
 CFLAGS:prepend = "-Wno-format-truncation -fPIC "
 EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'CFLAGS=${CFLAGS}' 'DESTDIR=${D}' 'PREFIX=/usr'"
 
+FILES_SOLIBSDEV = ""
+FILES:${PN} += "${libdir}/"
+INSANE_SKIP:${PN} = "dev-so"
+
 do_compile(){
     oe_runmake linux-libs
 }
