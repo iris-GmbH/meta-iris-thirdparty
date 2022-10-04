@@ -1,0 +1,2 @@
+list(APPEND CMAKE_MODULE_PATH "$ENV{OECORE_TARGET_SYSROOT}/usr/share/cmake/Modules")
+
