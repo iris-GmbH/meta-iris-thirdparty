@@ -12,7 +12,12 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=21362fe40271b97d3ce68f544471f159 \
 SRC_URI = "git://github.com/mattgodbolt/seasocks.git;protocol=https;branch=master"
 SRCREV = "7fd17dd1b33c76d622c9dd0eae2579d29bff8056"
 
-SRC_URI += "file://0001-versioned-shared-library.patch"
+SRC_URI += "\
+	file://0001-versioned-shared-library.patch \
+	file://0002-add-ipv6-support-to-seasocks.patch \
+	file://0003-Connection.cpp-Forbid-empty-static-root-path.patch \
+	file://0004-Remove-embedded-content.patch \
+"
 
 S = "${WORKDIR}/git"
 
