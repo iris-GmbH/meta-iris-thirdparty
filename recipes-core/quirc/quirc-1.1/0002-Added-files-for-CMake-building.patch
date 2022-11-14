@@ -1,0 +1,109 @@
+From 6b4ff32e77b27a120fddb748b735efc90b66d529 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?iris=20Philipp=20Sch=C3=B6we?= <philipp.schoewe@irisgmbh.de>
+Date: Wed, 22 Apr 2020 08:49:07 +0200
+Subject: [PATCH] Added files for CMake building
+
+---
+ CMakeLists.txt                      | 55 +++++++++++++++++++++++++++++
+ cmake/quirc-config-version.cmake.in | 11 ++++++
+ cmake/quirc-config.cmake            |  8 +++++
+ 3 files changed, 74 insertions(+)
+ create mode 100644 CMakeLists.txt
+ create mode 100644 cmake/quirc-config-version.cmake.in
+ create mode 100644 cmake/quirc-config.cmake
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+new file mode 100644
+index 0000000..2153f78
+--- /dev/null
++++ b/CMakeLists.txt
+@@ -0,0 +1,55 @@
++cmake_minimum_required(VERSION 2.8)
++
++project(quirc C)
++
++set(quirc_VERSION_STRING quirc-1.1.0-dev)
++
++string(REPLACE "quirc-" "" quirc_VERSION ${quirc_VERSION_STRING})
++
++if(NOT DEFINED CMAKE_DEBUG_POSTFIX)
++    set(CMAKE_DEBUG_POSTFIX "d")
++endif()
++
++add_library(quirc STATIC
++            lib/decode.c
++            lib/identify.c
++            lib/quirc.c
++            lib/quirc.h
++            lib/quirc_internal.h
++            lib/version_db.c)
++
++target_include_directories(quirc
++    PUBLIC
++        $<INSTALL_INTERFACE:include>
++        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib>
++    PRIVATE
++        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib>
++        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
++)
++
++include(GNUInstallDirs)
++
++if(NOT DEFINED CMAKE_INSTALL_CMAKEDIR)
++    set(CMAKE_INSTALL_CMAKEDIR "lib/cmake/quirc")
++endif()
++
++install(TARGETS quirc EXPORT quirc-targets
++        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
++
++install(EXPORT quirc-targets
++        DESTINATION ${CMAKE_INSTALL_CMAKEDIR})
++
++configure_file(cmake/quirc-config-version.cmake.in quirc-config-version.cmake @ONLY)
++
++install(FILES cmake/quirc-config.cmake ${CMAKE_CURRENT_BINARY_DIR}/quirc-config-version.cmake
++        DESTINATION ${CMAKE_INSTALL_CMAKEDIR})
++
++install(FILES lib/quirc.h
++        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
++
++set(CPACK_PACKAGE_NAME "quirc")
++set(CPACK_VERBATIM_VARIABLES YES)
++set(CPACK_GENERATOR "DEB")
++set(CPACK_PACKAGE_CONTACT "https://github.com/dlbeer/quirc")
++set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CMAKE_LIBRARY_ARCHITECTURE}")
++include(CPack)
+diff --git a/cmake/quirc-config-version.cmake.in b/cmake/quirc-config-version.cmake.in
+new file mode 100644
+index 0000000..cf9daab
+--- /dev/null
++++ b/cmake/quirc-config-version.cmake.in
+@@ -0,0 +1,11 @@
++set(PACKAGE_VERSION "@quirc_VERSION@")
++
++# Check whether the requested PACKAGE_FIND_VERSION is compatible
++if("${PACKAGE_VERSION}" VERSION_LESS "${PACKAGE_FIND_VERSION}")
++    set(PACKAGE_VERSION_COMPATIBLE FALSE)
++else()
++    set(PACKAGE_VERSION_COMPATIBLE TRUE)
++    if ("${PACKAGE_VERSION}" VERSION_EQUAL "${PACKAGE_FIND_VERSION}")
++        set(PACKAGE_VERSION_EXACT TRUE)
++    endif()
++endif()
+diff --git a/cmake/quirc-config.cmake b/cmake/quirc-config.cmake
+new file mode 100644
+index 0000000..a0b42ff
+--- /dev/null
++++ b/cmake/quirc-config.cmake
+@@ -0,0 +1,8 @@
++get_filename_component(SELF_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
++include(${SELF_DIR}/quirc-targets.cmake)
++
++set(quirc_LIBRARIES "quirc")
++
++set(quirc_INCLUDE_DIRS "${SELF_DIR}/../../../include")
++
++set(quirc_FOUND TRUE)
+-- 
+2.38.1
+
