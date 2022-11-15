@@ -1,4 +1,4 @@
-From 4732d616c5e25d009440fad28e9a8670f9e272f8 Mon Sep 17 00:00:00 2001
+From 718a56ea9c27315cf58fe8904cb417cd52650268 Mon Sep 17 00:00:00 2001
 From: Jasper Orschulko <Jasper.Orschulko@iris-sensing.com>
 Date: Fri, 4 Jun 2021 14:15:02 +0200
 Subject: [PATCH] Set Makefiles LIB_VERSION to 1.1
@@ -8,11 +8,11 @@ resulting in correctly versioned dynamic library
 
 Upstream-Status: Inappropriate configuration
 ---
- Makefile | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Makefile | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 6f5c2ec..888912c 100644
+index 6f5c2ec..ea4cc0a 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -18,7 +18,7 @@ PREFIX ?= /usr/local
@@ -24,6 +24,23 @@ index 6f5c2ec..888912c 100644
  
  CFLAGS ?= -O3 -Wall -fPIC
  QUIRC_CFLAGS = -Ilib $(CFLAGS) $(SDL_CFLAGS)
+@@ -57,7 +57,7 @@ libquirc.a: $(LIB_OBJ)
+ libquirc.so: libquirc.so.$(LIB_VERSION)
+ 
+ libquirc.so.$(LIB_VERSION): $(LIB_OBJ)
+-	$(CC) -shared -o $@ $(LIB_OBJ) $(LDFLAGS) -lm
++	$(CC) -shared -o $@ $(LIB_OBJ) $(LDFLAGS) -Wl,-soname,libquirc.so.$(LIB_VERSION) -lm
+ 
+ .c.o:
+ 	$(CC) $(QUIRC_CFLAGS) -o $@ -c $<
+@@ -67,6 +67,7 @@ install: libquirc.a libquirc.so.$(LIB_VERSION) quirc-demo quirc-scanner
+ 	install -o root -g root -m 0644 libquirc.a $(DESTDIR)$(PREFIX)/lib
+ 	install -o root -g root -m 0755 libquirc.so.$(LIB_VERSION) \
+ 		$(DESTDIR)$(PREFIX)/lib
++	ln -s libquirc.so.$(LIB_VERSION) $(DESTDIR)$(PREFIX)/lib/libquirc.so
+ 	install -o root -g root -m 0755 quirc-demo $(DESTDIR)$(PREFIX)/bin
+ 	install -o root -g root -m 0755 quirc-scanner $(DESTDIR)$(PREFIX)/bin
+ 
 -- 
-2.31.1
+2.38.1
 
