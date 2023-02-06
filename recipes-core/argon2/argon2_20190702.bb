@@ -28,6 +28,6 @@ do_install () {
 }
 
 PACKAGES =+ "${PN}-bin"
-FILES_${PN}-bin = "${bindir}/*"
+FILES:${PN}-bin = "${bindir}/*"
 
 BBCLASSEXTEND = "native nativesdk"

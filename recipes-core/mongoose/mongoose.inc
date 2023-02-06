@@ -17,7 +17,7 @@ SRC_URI += "file://Findmongoose.cmake"
 
 S = "${WORKDIR}/git"
 
-CFLAGS_prepend = "-Wno-format-truncation -fPIC "
+CFLAGS:prepend = "-Wno-format-truncation -fPIC "
 EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'CFLAGS=${CFLAGS}' 'DESTDIR=${D}' 'PREFIX=/usr'"
 
 do_compile(){
