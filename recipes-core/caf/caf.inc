@@ -16,9 +16,9 @@ DEPENDS = "curl openssl"
 
 PACKAGES =+ "${PN}-openssl ${PN}-io ${PN}-tools"
 
-FILES:${PN}-openssl += "${libdir}/libcaf_openssl.so.${PV}" 
-FILES:${PN}-io += "${libdir}/libcaf_io.so.${PV}" 
-FILES:${PN}-tools += "${datadir}/caf/tools/*" 
+FILES:${PN}-openssl += "${libdir}/libcaf_openssl.so.${PV}"
+FILES:${PN}-io += "${libdir}/libcaf_io.so.${PV}"
+FILES:${PN}-tools += "${datadir}/caf/tools/*"
 
 RDEPENDS:${PN}-openssl = "openssl"
 
