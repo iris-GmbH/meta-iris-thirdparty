@@ -7,7 +7,7 @@ DESCRIPTION = "Mongoose is a networking library for C/C++. It implements event-d
 
 HOMEPAGE = "https://www.cesanta.com/"
 
-LICENSE = "GPLv2 | mongoose"
+LICENSE = "GPL-2.0-only | mongoose"
 LICENSE_FLAGS = "commercial"
 
 SECTION = "libs"
