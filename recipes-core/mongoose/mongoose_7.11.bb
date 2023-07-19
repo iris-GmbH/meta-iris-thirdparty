@@ -3,7 +3,5 @@
 
 require recipes-core/mongoose/mongoose.inc
 
-SRCREV = "b379816178abdcd59135aa32f990a4b3bbbfb54b"
+SRCREV = "5c8e05a4fc34c5309ceea887a7e60b895b2100d7"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=22bc55929d9472414a5640f30b54df43"
-
-DEFAULT_PREFERENCE = "-1"
