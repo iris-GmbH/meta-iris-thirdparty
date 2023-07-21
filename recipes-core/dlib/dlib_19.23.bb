@@ -4,3 +4,5 @@
 require recipes-core/dlib/dlib.inc
 
 SRCREV = "074ab8bdbadbee1afb95653c3ce46867ed32dfa1"
+
+DEFAULT_PREFERENCE = "-1"
