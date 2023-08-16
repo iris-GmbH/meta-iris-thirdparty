@@ -1,0 +1,42 @@
+From a6a408c133f1af78fb7f165f0ca66b1aab1f5451 Mon Sep 17 00:00:00 2001
+From: iris Thomas Noack <thomas.noack@iris-sensing.com>
+Date: Thu, 10 Aug 2023 11:25:38 +0200
+Subject: [PATCH] cmake: fix install path
+
+Upstream-Status: Inappropriate [bug might be fixed in newer version]
+
+Signed-off-by: Parian Golchin <parian.golchin@iris-sensing.com>
+---
+ CMakeLists.txt | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 594dc5f..018447d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -157,7 +157,8 @@ if(JSON_VALIDATOR_INSTALL)
+     # Set Up the Project Targets and Config Files for CMake
+ 
+     # Set the install path to the cmake config files
+-    set(INSTALL_CMAKE_DIR ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
++    set(REL_INSTALL_CMAKE_DIR ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
++    set(INSTALL_CMAKE_DIR ${CMAKE_INSTALL_PREFIX}/${REL_INSTALL_CMAKE_DIR})
+ 
+     # Create the ConfigVersion file
+     include(CMakePackageConfigHelpers) # write_basic_package_version_file
+@@ -178,10 +179,10 @@ if(JSON_VALIDATOR_INSTALL)
+     install(FILES
+             "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+             "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+-            DESTINATION "${INSTALL_CMAKE_DIR}")
++            DESTINATION "${REL_INSTALL_CMAKE_DIR}")
+ 
+     # Install Targets
+     install(EXPORT ${PROJECT_NAME}Targets
+             FILE ${PROJECT_NAME}Targets.cmake
+-            DESTINATION "${INSTALL_CMAKE_DIR}")
++            DESTINATION "${REL_INSTALL_CMAKE_DIR}")
+ endif()
+-- 
+2.35.0
+
