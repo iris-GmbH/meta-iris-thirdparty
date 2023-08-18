@@ -13,7 +13,10 @@ LICENSE_FLAGS = "commercial"
 SECTION = "libs"
 
 SRC_URI = "git://github.com/cesanta/mongoose.git;protocol=https;branch=master"
-SRC_URI += "file://Findmongoose.cmake"
+SRC_URI += " \
+    file://Findmongoose.cmake \
+    file://0002-Add-SONAME-to-shared-object-compilation.patch \
+"
 
 S = "${WORKDIR}/git"
 
