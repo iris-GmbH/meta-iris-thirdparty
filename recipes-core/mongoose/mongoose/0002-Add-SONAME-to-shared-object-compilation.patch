@@ -1,0 +1,28 @@
+From d865ea3cdee9485b545a516b05366aa174852307 Mon Sep 17 00:00:00 2001
+From: Erik Schumacher <erik.schumacher@iris-sensing.com>
+Date: Fri, 7 Oct 2022 13:22:36 +0200
+Subject: [PATCH 2/3] Add SONAME to shared object compilation
+
+A correct SONAME is needed so linking in Yocto works properly.
+
+Signed-off-by: Michael Kirscht <michael.kirscht@irisgmbh.de>
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 8f12d5d9..2e996b5c 100644
+--- a/Makefile
++++ b/Makefile
+@@ -182,7 +182,7 @@ mingw++: Makefile mongoose.h $(SRCS)
+ linux-libs: CFLAGS += -fPIC
+ linux-libs: LDFLAGS += -Wl,-soname,libmongoose.so.$(VERSION)
+ linux-libs: mongoose.o
+-	$(CC) mongoose.o $(LDFLAGS) -shared -o libmongoose.so.$(VERSION)
++	$(CC) mongoose.o $(LDFLAGS) -Wl,-soname,libmongoose.so.$(VERSION) -shared -o libmongoose.so.$(VERSION)
+ 	$(AR) rcs libmongoose.a mongoose.o
+ 
+ install: linux-libs
+-- 
+2.20.1
+
