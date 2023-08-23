@@ -20,8 +20,11 @@ SRC_URI += " \
 
 S = "${WORKDIR}/git"
 
+PACKAGECONFIG ??= "openssl"
+PACKAGECONFIG[openssl] = "SSL='OPENSSL' OPENSSL='${STAGING_EXECPREFIXDIR}',,openssl"
+
 CFLAGS:prepend = "-Wno-format-truncation -fPIC "
-EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'CFLAGS=${CFLAGS}' 'DESTDIR=${D}' 'PREFIX=/usr'"
+EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'OPTS=${CFLAGS}' 'DESTDIR=${D}' 'PREFIX=/usr' ${PACKAGECONFIG_CONFARGS}"
 
 do_compile(){
     oe_runmake linux-libs
