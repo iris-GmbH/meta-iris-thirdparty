@@ -25,13 +25,17 @@ PACKAGECONFIG[openssl] = "SSL='OPENSSL' OPENSSL='${STAGING_EXECPREFIXDIR}',,open
 CFLAGS:prepend = "-Wno-format-truncation -fPIC "
 EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'OPTS=${CFLAGS}' 'DESTDIR=${D}' 'PREFIX=/usr' ${PACKAGECONFIG_CONFARGS}"
 
+MAKEFILE_DIR="."
+
 do_compile(){
+    cd ${MAKEFILE_DIR}
     oe_runmake linux-libs
 }
 
 do_install(){
     mkdir -p ${D}${libdir}
     mkdir -p ${D}${includedir}
+    cd ${MAKEFILE_DIR}
     oe_runmake install
     install -d ${D}${datadir}/cmake/Modules
     install -m 644 ${WORKDIR}/Findmongoose.cmake ${D}${datadir}/cmake/Modules
