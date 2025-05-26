@@ -1,0 +1,32 @@
+From c3dc8155d6339605cdbaa71376d3de5fc266138a Mon Sep 17 00:00:00 2001
+From: Erik Schumacher <erik.schumacher@iris-sensing.com>
+Date: Mon, 26 May 2025 10:39:33 +0200
+Subject: [PATCH] Drop obsolete glibc check and fix musl compilation
+
+Since Yocto dunfell, which uses glibc 2.31, this __GLIBC_PREREQ check
+always evaluates to true, but breaks compilation with musl.
+
+Upstream-Status: Inappropriate [breaks compilation with older glibc]
+---
+ src/main/c/Server.cpp | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/src/main/c/Server.cpp b/src/main/c/Server.cpp
+index ff0381a..3da4bdf 100644
+--- a/src/main/c/Server.cpp
++++ b/src/main/c/Server.cpp
+@@ -116,11 +116,7 @@ pid_t gettid() {
+ #ifdef _WIN32
+     return ::GetCurrentThreadId();
+ #else
+-#if __GLIBC_PREREQ(2, 30)
+     return ::gettid();
+-#else
+-    return static_cast<pid_t>(syscall(SYS_gettid));
+-#endif /* GLIBC 2.30 */
+ #endif
+ }
+ 
+-- 
+2.49.0
+
