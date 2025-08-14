@@ -1,0 +1,28 @@
+From 7ad8cb0b2f1b1a5b4189db032c45f7228ddf3023 Mon Sep 17 00:00:00 2001
+From: Ian Dannapel <ian.dannapel@iris-sensing.com>
+Date: Thu, 28 Aug 2025 17:45:50 +0200
+Subject: [PATCH] CMakeLists.txt: Fix hardcoded export location
+
+Signed-off-by: Ian Dannapel <ian.dannapel@iris-sensing.com>
+
+Upstream-Status: Submitted [https://github.com/giaf/blasfeo/pull/198]
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 93bbf4c7..97622a90 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1293,7 +1293,7 @@ install(TARGETS blasfeo EXPORT blasfeoConfig
+ 	RUNTIME DESTINATION bin)
+ 
+ 
+-install(EXPORT blasfeoConfig DESTINATION cmake)
++install(EXPORT blasfeoConfig DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/blasfeo FILE blasfeoConfig.cmake)
+ 
+ file(GLOB_RECURSE BLASFEO_HEADERS "include/*.h")
+ install(FILES ${BLASFEO_HEADERS} DESTINATION ${BLASFEO_HEADERS_INSTALLATION_DIRECTORY})
+-- 
+2.43.0
+
