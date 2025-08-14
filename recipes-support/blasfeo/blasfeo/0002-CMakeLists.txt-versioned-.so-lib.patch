@@ -1,0 +1,39 @@
+From 41495b1cd97079448a1ce837cc6f979e09818042 Mon Sep 17 00:00:00 2001
+From: Ian Dannapel <ian.dannapel@iris-sensing.com>
+Date: Fri, 29 Aug 2025 11:10:21 +0200
+Subject: [PATCH] CMakeLists.txt: versioned .so lib
+
+Signed-off-by: Ian Dannapel <ian.dannapel@iris-sensing.com>
+
+Upstream-Status: Submitted [https://github.com/giaf/blasfeo/pull/198]
+---
+ CMakeLists.txt | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 723edb43..495b9114 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1253,6 +1253,19 @@ endif()
+ # add library
+ add_library(blasfeo ${BLASFEO_SRC})
+ 
++# Read version from the 'version' file
++file(READ "${CMAKE_CURRENT_SOURCE_DIR}/version" BLASFEO_VERSION)
++string(STRIP "${BLASFEO_VERSION}" BLASFEO_VERSION)
++
++# split into major/minor for SOVERSION
++string(REPLACE "." ";" VERSION_LIST ${BLASFEO_VERSION})
++list(GET VERSION_LIST 0 BLASFEO_SOVERSION)
++
++set_target_properties(blasfeo PROPERTIES
++    VERSION ${BLASFEO_VERSION}
++    SOVERSION ${BLASFEO_SOVERSION}
++)
++
+ # 1) *XILINX_NONE_ELF*:
+ #		Xilinx standalone (any core, e.g. A53,R5,..; *untested*)
+ # 2) *XILINX_ULTRASCALE_NONE_ELF_JAILHOUSE*:
+-- 
+2.43.0
+
