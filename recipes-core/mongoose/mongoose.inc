@@ -25,7 +25,8 @@ PACKAGECONFIG[openssl] = "SSL='OPENSSL' OPENSSL='${STAGING_EXECPREFIXDIR}',,open
 CFLAGS:prepend = "-Wno-format-truncation -fPIC "
 EXTRA_OEMAKE = "'CC=${CC}' 'AR=${AR}' 'OPTS=${CFLAGS}' 'DESTDIR=${D}' 'PREFIX=/usr' ${PACKAGECONFIG_CONFARGS}"
 
-MAKEFILE_DIR="."
+# Makefile was moved to test/Makefile with https://github.com/cesanta/mongoose/commit/89aaf1c30c20db939154121d4eb0320339b2f053
+MAKEFILE_DIR="test"
 
 do_compile(){
     cd ${MAKEFILE_DIR}
