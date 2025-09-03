@@ -51,3 +51,6 @@ PACKAGECONFIG[static-libs] = "-DBUILD_SHARED_LIBS=OFF,,"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 BBCLASSEXTEND = "native nativesdk"
+
+# allow empty base package when building static-libs
+ALLOW_EMPTY:${PN} = "1"
