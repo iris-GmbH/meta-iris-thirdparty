@@ -20,12 +20,12 @@ SRCREV = "3f4befd2abf157342a3e0759b6e9f49d56ceb998"
 
 S = "${WORKDIR}/git"
 
-inherit cmake
+inherit cmake pkgconfig
 
 # Target architecture mapping for BLASFEO
-TARGET_BLASFEO = "GENERIC"
-TARGET_BLASFEO:armv7a = "ARMV7A_ARM_CORTEX_A7"
-TARGET_BLASFEO:aarch64 = "ARMV8A_ARM_CORTEX_A53"
+TARGET_BLASFEO = "${@bb.utils.contains('TUNE_FEATURES', 'cortexa53', 'ARMV8A_ARM_CORTEX_A53', \
+                     bb.utils.contains('TUNE_FEATURES', 'cortexa55', 'ARMV8A_ARM_CORTEX_A55', \
+                     bb.utils.contains('TUNE_FEATURES', 'cortexa7', 'ARMV7A_ARM_CORTEX_A7', 'GENERIC', d), d), d)}"
 
 # CMake configuration
 EXTRA_OECMAKE = "-DTARGET=${TARGET_BLASFEO} \
@@ -35,7 +35,7 @@ EXTRA_OECMAKE = "-DTARGET=${TARGET_BLASFEO} \
                  -DFORTRAN_BLAS_API=OFF \
                  -DBUILD_SHARED_LIBS=ON \
                  -DCMAKE_INSTALL_PREFIX=${prefix} \
-                 -DCMAKE_INSTALL_LIBDIR=${baselib}"
+                 -DCMAKE_INSTALL_LIBDIR=${libdir}"
 
 # Package configuration options
 PACKAGECONFIG ??= ""
