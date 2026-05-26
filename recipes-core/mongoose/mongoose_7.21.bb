@@ -3,5 +3,9 @@
 
 require recipes-core/mongoose/mongoose.inc
 
+SRC_URI += " \
+    file://0001-Update-Mongoose-with-security-fixes.patch \
+"
+
 SRCREV = "b1c2ffe1a0aa13e3d94075b1a2c66b8b43ac9116"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=0ddcde673cf75f85dbdd2b3836c0d056"
