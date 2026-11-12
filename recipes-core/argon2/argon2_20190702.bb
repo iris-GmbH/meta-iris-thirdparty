@@ -5,6 +5,8 @@ SUMMARY = "C reference implementation of the Argon2 password-hashing function"
 
 DESCRIPTION = "Argon2 is a password-hashing function that summarizes the state of the art in the design of memory-hard functions and can be used to hash passwords for credential storage, key derivation, or other applications."
 
+CVE_PRODUCT = "argon2_project:argon2"
+
 LICENSE = "CC0-1.0 | Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3f577d9446ded914cd9f8f0ae099a45a"
 
